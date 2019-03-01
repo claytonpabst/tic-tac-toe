@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -17,7 +16,7 @@ class App extends Component {
     }
   }
 
-  checkForWinner = (board, i, j) => {
+  checkForWinner = (board) => {
     for(let i=0; i<board.length; i++){
       for(let j=0; j<board[i].length; j++){
         if(this.checkHor(board, i, j) || this.checkDiag(board, i, j) || this.checkVert(board, i, j)){
@@ -42,7 +41,7 @@ class App extends Component {
     } else {
       theReturn = true
     }
-    if(board[i][j] !== board[i+1][j-1] || board[i][j] !== board[i+1][j-2]){
+    if(board[i][j] !== board[i+1][j-1] || board[i][j] !== board[i+2][j-2]){
       theReturn = false
     } else {
       theReturn = true
@@ -66,7 +65,7 @@ class App extends Component {
       this.state.playerTurn = 1
     }
     this.forceUpdate()
-    if(this.checkForWinner(this.state.board, i, j)){
+    if(this.checkForWinner(this.state.board)){
       alert('player ' + this.state.board[i][j] + " Wins")
     }
   }
